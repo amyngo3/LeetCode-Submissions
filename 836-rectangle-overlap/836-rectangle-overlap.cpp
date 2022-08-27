@@ -4,20 +4,15 @@ public:
         // corners or edges, no overlap
         // rec1 x1 to x2 and y1 to y2
         // rec2 x1 to x2 and y1 to y2
-        // check if either rectangle is actually a line
-        if(rec1[0] == rec1[2] || rec1[1] == rec1[3] ||
-           rec2[0] == rec2[2] || rec2[1] == rec2[3])
+        // check if either rectangles sides touch the edges
+        // or the sides are farther from touching sides
+        if(rec1[0] >= rec2[2] ||    // rec1's left to rec2's right
+           rec1[1] >= rec2[3] ||    // rec1's bottom to rec2's top
+           rec1[2] <= rec2[0] ||    // rec1's right to rec2's left
+           rec1[3] <= rec2[1])      // rec1's top to rec2's bottom
             return false;
         
         // overlap condition
-        // top - rec1 y >= rec2 y
-        // right - rec1 x >= rec2 x
-        // bottom - rec1 y <= rec2 y
-        // left - rec1 x <= rec2 x
-        return !(rec1[1] >= rec2[3] ||  // 0 - 3
-                rec1[0] >= rec2[2] ||   // 0 - 3
-                rec1[3] <= rec2[1] ||   // 2 - 1
-                rec1[2] <= rec2[0]      // 2 - 1
-               );
+        return true;
     }
 };
