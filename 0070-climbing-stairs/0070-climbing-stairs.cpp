@@ -5,8 +5,9 @@ public:
         if (n <= 2)
             return n;
         
+        // 1 stair for 1 step and 2 stairs for 2 steps
         int prev = 1, cur = 2;
-        // for loop from index 4 to n
+        // for loop from index 3 to n to build number of possible steps of n
         for(int i = 3; i <= n; i++){
             int res = prev + cur;
             prev = cur;
